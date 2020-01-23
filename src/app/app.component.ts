@@ -6,14 +6,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  length = 0;
   includeLetters=false;
   includeNumbers=false;
   includeSymbols=false;
   password='';
 
+  onChangeLength(value:string){
+    let parsedValue = parseInt(value);
+    if(!isNaN(parsedValue)){
+      this.length=parsedValue;
+    }
+  }
+
   onButtonClick(){
-    console.log(this.includeLetters);
-    this.password='my password';
+    const numbers ="123456677890";
+    const letters = "abscderfghijklmnopqrstuvwxyz";
+    const symbols = "~!@#$%%^&*()_+";
+    let validChars ='';
+    if(this.includeLetters){
+      validChars += letters;
+    }
+    if(this.includeNumbers){
+      validChars += numbers;
+    }
+    if(this.includeSymbols){
+      validChars += symbols;
+    }
+
+    let generatedPassword ='';
+    for(let i=0; i< this.length; i++){
+      const index = Math.floor( Math.random() * validChars.length);
+      generatedPassword += validChars[index];
+    }
+
+    this.password = generatedPassword;
   }
 
   onChangeUseLetters(){
