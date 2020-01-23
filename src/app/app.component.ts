@@ -24,6 +24,7 @@ export class AppComponent {
     const letters = "abscderfghijklmnopqrstuvwxyz";
     const symbols = "~!@#$%%^&*()_+";
     let validChars ='';
+    
     if(this.includeLetters){
       validChars += letters;
     }
